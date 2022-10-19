@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% load static%}
+
+{% block title %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gallery.css' %}">
+    <title>Gallery</title>
+{% endblock title %}
+
+{% block content %}
+<div class="content-wrap">
+    {% for item in gallery %}
+    <span>Title: {{ item.name }}</span>
+    <span>Description: {{ item.description }}</span>
+    <img scr="{% url item.image.url %}" width="250" height="250"/>
+    {% endfor %}
+</div>
+
+{% endblock content %}

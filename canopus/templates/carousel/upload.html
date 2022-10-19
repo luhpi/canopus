@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+{% load static%}
+
+{% block title %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/upload.css' %}">
+    <title>Gallery</title>
+{% endblock title %}
+
+{% block content %}
+<div class="subcontent-wrap">
+    <div class='form-wrap'>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <i class="material-icons-outlined backup">backup</i>
+            <span class='form-title'>Upload a new image</span>
+            <div class='input-wrap'>
+                {{ form.name }}
+                <span class="focus-input" data-placeholder="Name"></span>
+            </div>
+            <div class='input-wrap'>
+                {{ form.description }}
+                <span class="focus-input" data-placeholder="Description"></span>
+            </div>
+            <div class='wrap-center'>
+                <div class='file-wrap'>
+                    <div class='submit-btn-bg'></div>
+                    <label for='id_image' class='file-label'>PICK FILE</label>
+                    {{ form.image }}
+                </div>
+            </div>
+            <div class='wrap-center'>
+                <span class='file-name' id='upload-file-name'></span>
+            </div>
+            
+            <div class='containter-btn'>
+                <div class='wrap-submit-btn'>
+                    <div class='submit-btn-bg'></div>
+                    <button class='submit-btn'>UPLOAD</button>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</div>
+<script>
+    $('#id_image').on('change',
+    function(){
+        var fname = $(this).val().replace(/.*(\/|\\)/, '');
+        console.log(fname)
+        $("#upload-file-name").html(fname);
+    })
+</script>
+{% endblock content %}

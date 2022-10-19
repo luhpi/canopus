@@ -31,6 +31,19 @@
             <div class='wrap-center'>
                 <span class='file-name' id='upload-file-name'></span>
             </div>
+            {% if error %}
+                {% if error == "Upload successful." %}
+                <div class='success' style="margin-top: 10px;">
+                    <i class='material-icons-outlined check'>check_circle</i>
+                    <span>{{error}}</span>
+                </div>
+                {% else %}
+                <div class='error' style="margin-top: 10px;">
+                    <i class='material-icons-outlined alert'>error_outline</i>
+                    <span>{{error}}</span>
+                </div>
+                {% endif %}
+            {% endif %}
             
             <div class='containter-btn'>
                 <div class='wrap-submit-btn'>
@@ -48,6 +61,18 @@
         var fname = $(this).val().replace(/.*(\/|\\)/, '');
         console.log(fname)
         $("#upload-file-name").html(fname);
+        $(".error").hide();
+        $(".success").hide();
     })
+    $('input').each(
+            function(){
+                $(this).on('blur',function(){
+                    if($(this).val().trim()!=""){
+                        $(this).addClass('has-val');}
+                    else{
+                        $(this).removeClass('has-val');
+                    }
+                })
+            })
 </script>
 {% endblock content %}

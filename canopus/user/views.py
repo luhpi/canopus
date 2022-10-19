@@ -8,6 +8,8 @@ from .services import login, logout, validate_login
 
 def loginView(request):
 
+    error = ""
+
     if validate_login(request):
         return redirect('/gallery')
 
@@ -18,12 +20,13 @@ def loginView(request):
                 login(request)
                 return redirect('/gallery')
             except Exception as e:
-                return HttpResponseRedirect("")
+                error = "Authentification error. Check your credentials."
     else:
         form = LoginForm()
 
     template = loader.get_template('user/login.html')
-    context = {'form': form,}
+    context = {'form': form,
+               'error': error,}
     return HttpResponse(template.render(context, request))
 
 def logoutView(request):

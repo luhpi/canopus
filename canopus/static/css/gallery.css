@@ -10,7 +10,7 @@
 .block-wrap, .description-wrap{
     background-color: #fff;
     box-shadow: 0 5px 10px 0 rgb(0 0 0 / 10%);
-    width: 40%;
+    width: 60%;
     border-radius: 10px;
     margin: 10px auto;
 }
@@ -42,7 +42,7 @@
 }
 .image-wrap img{
     max-width: 50vw;
-    height: 50vh;
+    max-height: 50vh;
     display: block;
     margin: 15px auto;
 }
@@ -72,4 +72,22 @@ i.selected{
 }
 .hidden{
     display: none;
+}
+@media (max-width: 500px){
+    .description-wrap{
+        width: 100%;
+    }
+    .image-wrap img{
+        max-width: 70vw;
+        max-height: 70vh;
+    }
+    .arrow i,
+    .arrow i:hover
+    {
+        font-size: 40px;
+    }
+    .navigation-wrap i,
+    .navigation-wrap i:hover{
+        font-size: 20px;
+    }
 }

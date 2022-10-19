@@ -1,3 +1,4 @@
+from re import L
 from .models import User
 from.exceptions import LoginError
 
@@ -30,3 +31,5 @@ def login(request):
             return u
         else:
             raise LoginError
+    else:
+        raise LoginError

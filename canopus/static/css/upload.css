@@ -196,3 +196,9 @@ input.has-val+.focus-input::after{
 input.has-val+.focus-input::before{
     width:100%
 }
+@media (max-width: 600px){
+    .form-wrap{
+        margin: 5%;
+        padding: 10%;
+    }
+}

@@ -34,8 +34,8 @@ body{
    font-size: 30px;
    color: #fff;
    line-height: 1;
+   margin: auto;
    margin-right: 15px;
-   margin-top: 3px;
 }
 .header-title{
    font-family: 'Sacramento';
@@ -89,4 +89,30 @@ body{
 .upload{
    margin-left: 5px;
    color: #fff;
+}
+.error, .success{
+   text-align: center;
+   display: flex;
+   justify-content: center;
+}
+.error span, .alert{
+   color: #fe525b;
+   font-size: 14px!important;
+   line-height: 1;
+   margin: 0 5px;
+}
+.success span, .check{
+   color: #7FB77E;
+   font-size: 14px!important;
+   line-height: 1;
+   margin: 0 5px;
+}
+@media (max-width: 500px){
+   .upload-btn{
+       font-size: 12px;
+       height: 20px;
+   }
+   .logout, .upload, .cloud, .header-title{
+       font-size: 20px;
+   }
 }

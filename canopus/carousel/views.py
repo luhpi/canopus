@@ -24,18 +24,24 @@ def upload(request):
         return redirect('/user/login')
 
     user = getAuthUser(request)
+    error = ""
 
     if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            addImage(request, user)
-            form.clean()
-        else:
-            print("error uploading file")
+        try:
+            form = ImageForm(request.POST, request.FILES)
+            if form.is_valid():
+                addImage(request, user)
+                form = ImageForm()
+                error = "Upload successful."
+            else:
+                error = "Upload error."
+        except Exception as e:
+            error = "Upload error."
     else:
         form = ImageForm
 
     template = loader.get_template('carousel/upload.html')
     context = {'user': user,
-               'form': form}
+               'form': form,
+               'error': error}
     return HttpResponse(template.render(context, request))

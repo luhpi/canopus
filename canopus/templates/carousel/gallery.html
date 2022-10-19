@@ -7,12 +7,120 @@
 {% endblock title %}
 
 {% block content %}
-<div class="content-wrap">
-    {% for item in gallery %}
-    <span>Title: {{ item.name }}</span>
-    <span>Description: {{ item.description }}</span>
-    <img scr="{% url item.image.url %}" width="250" height="250"/>
-    {% endfor %}
+<div class='carousel-wrap'>
+    <div class='block-wrap'>
+        <div class='subcontent-wrap'>
+            <div class='arrow'>
+                <i class='material-icons-outlined' onclick='backImg()'>navigate_before</i>
+            </div>
+            <div class='image-container'>
+                {% for item in gallery %}
+                    {% if forloop.first %}
+                    <div class='image-wrap' id='image-{{ forloop.counter }}'>
+                    {% else %} 
+                    <div class='image-wrap hidden' id='image-{{ forloop.counter }}'>
+                    {% endif %}
+                        <img src="{{ item.image.url }}"/>
+                    </div>
+                {% empty %}
+                    <div class='image-wrap' id='image-1'>
+                        <img src="/media/gallery/no-image.jpg"/>
+                    </div>
+                {% endfor %}
+            </div> 
+            <div class='arrow'>
+                <i class='material-icons-outlined' onclick='nextImg()'>navigate_next</i>
+            </div>
+            
+        </div>
+        <div class='navigation-wrap'>
+            {% for item in gallery %}
+                {% if forloop.first %}
+                <i class='material-icons-outlined nav selected' id='nav-{{ forloop.counter }}' onclick='changeImg({{ forloop.counter }})'>
+                    radio_button_checked
+                {% else %} 
+                <i class='material-icons-outlined nav' id='nav-{{ forloop.counter }}' onclick='changeImg({{ forloop.counter }})'>
+                    radio_button_unchecked
+                {% endif %}
+                </i>
+                {% empty %}
+                <i class='material-icons-outlined nav selected' id='nav-1' onclick='changeImg(1)'>
+                    radio_button_checked
+                </i>
+            {% endfor %}
+        </div>
+    </div>
+    <div class='description-wrap'>
+        {% for item in gallery %}
+            {% if forloop.first %}
+            <div class='text-wrap' id='text-{{ forloop.counter }}'>
+            {% else %} 
+            <div class='text-wrap hidden' id='text-{{ forloop.counter }}'>
+            {% endif %}
+                <div>
+                    <span class='title'>Title:</span>
+                    <span class='text'>{{ item.name }}</span>
+                </div>
+                <div>
+                    <span class='title'>Description: </span>
+                    <span class='text'>{{ item.description }}</span>
+                </div>
+            </div>
+        {% empty %}
+        <div class='text-wrap' id='text-1'>
+            <div>
+                <span class='title'>No images found in your gallery.</span>
+            </div>
+            <div>
+                <span class='text'>How about adding a few?</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
+
+<script>
+    {% for item in gallery %}
+    {% if forloop.last %} var length = {{ forloop.counter }}{% endif %}
+    {% empty %} var length = 1
+    {% endfor %}
+
+    function backImg(){
+        var index = $('.selected').attr('id').split('-')[1];
+        var newIndex = parseInt(index)-1;
+
+        if (newIndex == 0)
+            newIndex = length;
+
+        changeImg(newIndex);
+    }
+
+    function nextImg(){
+        var index = $('.selected').attr('id').split('-')[1];
+        var newIndex = parseInt(index)+1;
+
+        if (newIndex > length)
+            newIndex = 1;
+
+        changeImg(newIndex);
+    }
+
+    function changeImg(index){
+        $('.image-wrap').each(function(){
+            $(this).addClass("hidden");
+        })
+        $('.text-wrap').each(function(){
+            $(this).addClass("hidden");
+        })
+        $('.nav').each(function(){
+            $(this).removeClass("selected");
+            $(this).html("radio_button_unchecked")
+        })
+        $('#image-'+index).removeClass("hidden");
+        $('#text-'+index).removeClass("hidden");
+        $('#nav-'+index).addClass("selected");
+        $('#nav-'+index).html("radio_button_checked")
+    }
+</script>
 
 {% endblock content %}

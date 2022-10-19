@@ -42,6 +42,12 @@ body{
    font-weight: bold;
    margin-top: 5px;
 }
+.title-wrap:hover .cloud,
+.title-wrap:hover .header-title,
+.title-wrap:hover{
+   color: #CDFCF6!important;
+   cursor: pointer;
+}
 .logout{
    background-color: #fe525b;
    color: #fff;

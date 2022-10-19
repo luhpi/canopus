@@ -9,4 +9,4 @@ urlpatterns = [
     path('gallery/', include('carousel.urls')),
     path('user/', include('user.urls')),
     path('', RedirectView.as_view(url='user/login'))
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

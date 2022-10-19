@@ -1,0 +1,75 @@
+.carousel-wrap{
+    background-color: #efefef;
+    height: 100vh;
+    margin-top: -100px;
+    padding: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.block-wrap, .description-wrap{
+    background-color: #fff;
+    box-shadow: 0 5px 10px 0 rgb(0 0 0 / 10%);
+    width: 40%;
+    border-radius: 10px;
+    margin: 10px auto;
+}
+.block-wrap {
+    width: fit-content;
+    padding-bottom: 15px;
+}
+.subcontent-wrap{
+    margin-top: 20vh;
+    display: flex;
+    width: fit-content;
+}
+.arrow{
+    margin: auto;
+    cursor: pointer;
+}
+.arrow i{
+    color: #555;
+    font-size: 50px;
+    transition: all .4s;
+    user-select: none;
+}
+.arrow i:hover{
+    color: #98A8F8;
+    font-size: 60px;
+}
+.image-wrap{
+    transition: all .4s;
+}
+.image-wrap img{
+    max-width: 50vw;
+    height: 50vh;
+    display: block;
+    margin: 15px auto;
+}
+.navigation-wrap{
+    display: flex;
+    justify-content: center;
+}
+.navigation-wrap i{
+    cursor: pointer;
+    transition: all .4s;
+    user-select: none;
+}
+.navigation-wrap i:hover{
+    color: #BCCEF8;
+    font-size: 26px;
+}
+i.selected{
+    color: #98A8F8;
+}
+.text-wrap{
+    text-align: center;
+    padding: 20px 10px;
+}
+.title{
+    color: #98A8F8;
+    font-weight: bold;
+}
+.hidden{
+    display: none;
+}

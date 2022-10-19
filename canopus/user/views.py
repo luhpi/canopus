@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 from .forms import LoginForm
@@ -18,7 +18,7 @@ def loginView(request):
                 login(request)
                 return redirect('/gallery')
             except Exception as e:
-                return redirect('.')
+                return HttpResponseRedirect("")
     else:
         form = LoginForm()
 
